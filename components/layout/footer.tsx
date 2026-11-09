@@ -1,30 +1,13 @@
 import Link from 'next/link';
 
-export function Header() {
+export function Footer() {
   return (
-    <header className="border-b border-line bg-white/90 backdrop-blur-sm">
-      <div className="container-shell flex items-center justify-between py-4">
-        <Link href="/" className="text-xl font-semibold tracking-[0.08em] text-ink">
-          RADHAKRISHNA
-        </Link>
-
-        <nav className="hidden items-center gap-6 text-sm font-medium text-muted md:flex">
-          <Link href="/" className="hover:text-gold">Home</Link>
-          <Link href="/about" className="hover:text-gold">About</Link>
-          <Link href="/catalog" className="hover:text-gold">Catalog</Link>
-          <Link href="/contact" className="hover:text-gold">Contact</Link>
-          <Link href="/admin" className="hover:text-gold">Admin</Link>
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <button className="rounded-full border border-line px-4 py-2 text-sm font-medium text-ink hover:border-gold hover:text-gold">
-            Search
-          </button>
-          <button className="rounded-full bg-gold px-4 py-2 text-sm font-medium text-white hover:bg-[#9a7734]">
-            Cart (0)
-          </button>
-        </div>
+    <footer className="border-t border-line bg-white">
+      <div className="container-shell grid gap-8 py-10 md:grid-cols-3">
+        <div><div className="text-lg font-semibold tracking-[0.08em] text-ink">RADHAKRISHNA</div><p className="mt-3 text-sm text-muted">Jewellery storefront. Store contact details and policies will be configured by the owner.</p></div>
+        <div><div className="text-sm font-medium uppercase tracking-[0.18em] text-gold">Explore</div><ul className="mt-3 space-y-2 text-sm text-muted"><li><Link href="/catalog" className="hover:text-gold">Catalog</Link></li><li><Link href="/about" className="hover:text-gold">About</Link></li><li><Link href="/contact" className="hover:text-gold">Contact</Link></li></ul></div>
+        <div><div className="text-sm font-medium uppercase tracking-[0.18em] text-gold">Store management</div><ul className="mt-3 space-y-2 text-sm text-muted"><li><Link href="/admin/products" className="hover:text-gold">Products</Link></li><li><Link href="/admin/categories" className="hover:text-gold">Categories</Link></li><li><Link href="/admin/settings" className="hover:text-gold">Settings</Link></li></ul></div>
       </div>
-    </header>
+    </footer>
   );
 }

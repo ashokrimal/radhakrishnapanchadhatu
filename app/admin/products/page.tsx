@@ -9,38 +9,20 @@ export default function AdminProductsPage() {
           <p className="text-xs uppercase tracking-[0.2em] text-gold">Products</p>
           <h1 className="section-title mt-2">Product management</h1>
         </div>
-        <Link href="/admin/products/new" className="rounded-full bg-gold px-5 py-2 font-medium text-white hover:bg-[#9a7734]">
-          Add product
-        </Link>
+        <Link href="/admin/products/new" className="rounded-full bg-gold px-5 py-2 font-medium text-white hover:bg-[#9a7734]">Add product</Link>
       </div>
-
-      <div className="card p-6">
-        <div className="mb-4 grid gap-4 md:grid-cols-7">
-          {['Name', 'Category', 'Material', 'Price', 'Stock', 'Status', 'Action'].map((header) => (
-            <div key={header} className="text-xs uppercase tracking-[0.18em] text-muted">{header}</div>
-          ))}
-        </div>
-
-        <div className="space-y-3">
-          {placeholderProducts.map((product) => (
-            <div key={product.id} className="grid gap-4 rounded-xl border border-line bg-[#faf8f5] p-4 md:grid-cols-7">
-              <div className="font-medium text-ink">{product.name}</div>
-              <div className="text-muted">{product.category}</div>
-              <div className="text-muted">{product.material}</div>
-              <div className="text-muted">NPR {product.price}</div>
-              <div className="text-muted">{product.stock}</div>
-              <div className="text-muted">{product.status}</div>
-              <div>
-                <Link
-                  href={`/admin/products/${product.id}`}
-                  className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-medium text-ink hover:border-gold hover:text-gold"
-                >
-                  Edit
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
+      <div className="card overflow-x-auto p-6">
+        {placeholderProducts.length === 0 ? (
+          <div className="py-12 text-center">
+            <h2 className="text-xl font-medium text-ink">No products added</h2>
+            <p className="mt-2 text-sm text-muted">Products will appear here after the database-backed admin workflow is connected.</p>
+          </div>
+        ) : (
+          <table className="w-full min-w-[720px] text-left text-sm">
+            <thead><tr className="border-b border-line text-xs uppercase tracking-[0.15em] text-muted"><th className="pb-3">Name</th><th className="pb-3">Category</th><th className="pb-3">Material</th><th className="pb-3">Price</th><th className="pb-3">Stock</th><th className="pb-3">Status</th></tr></thead>
+            <tbody>{placeholderProducts.map((product) => <tr key={product.id} className="border-b border-line last:border-0"><td className="py-4 font-medium">{product.name}</td><td>{product.category}</td><td>{product.material}</td><td>{product.pricePaisa === null ? 'Not set' : `NPR ${(product.pricePaisa / 100).toFixed(2)}`}</td><td>{product.stockQuantity}</td><td>{product.status}</td></tr>)}</tbody>
+          </table>
+        )}
       </div>
     </div>
   );
