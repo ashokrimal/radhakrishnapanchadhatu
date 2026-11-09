@@ -15,21 +15,29 @@ export default function AdminProductsPage() {
       </div>
 
       <div className="card p-6">
-        <div className="mb-4 grid gap-4 md:grid-cols-6">
-          {['Name', 'Category', 'Material', 'Price', 'Stock', 'Status'].map((header) => (
+        <div className="mb-4 grid gap-4 md:grid-cols-7">
+          {['Name', 'Category', 'Material', 'Price', 'Stock', 'Status', 'Action'].map((header) => (
             <div key={header} className="text-xs uppercase tracking-[0.18em] text-muted">{header}</div>
           ))}
         </div>
 
         <div className="space-y-3">
           {placeholderProducts.map((product) => (
-            <div key={product.id} className="grid gap-4 rounded-xl border border-line bg-[#faf8f5] p-4 md:grid-cols-6">
+            <div key={product.id} className="grid gap-4 rounded-xl border border-line bg-[#faf8f5] p-4 md:grid-cols-7">
               <div className="font-medium text-ink">{product.name}</div>
               <div className="text-muted">{product.category}</div>
               <div className="text-muted">{product.material}</div>
               <div className="text-muted">NPR {product.price}</div>
               <div className="text-muted">{product.stock}</div>
               <div className="text-muted">{product.status}</div>
+              <div>
+                <Link
+                  href={`/admin/products/${product.id}`}
+                  className="rounded-full border border-line bg-white px-3 py-1.5 text-xs font-medium text-ink hover:border-gold hover:text-gold"
+                >
+                  Edit
+                </Link>
+              </div>
             </div>
           ))}
         </div>
